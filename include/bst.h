@@ -9,7 +9,7 @@ template <typename T>
 
     class BST {
         public:
-BST(){
+BST() {
         root = nullptr;
 }
      struct Node {
@@ -23,7 +23,7 @@ BST(){
             left = nullptr;
             right = nullptr;
         }
-};       
+                };
     void insert(const t& value) {
         root = add(root, value);
     }
