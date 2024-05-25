@@ -7,7 +7,8 @@
 
 template <typename T>
 class bst {
-public:
+
+ public:
     bst() {
         root = nullptr;
     }
@@ -28,7 +29,7 @@ public:
     int size() const;
     ~bst();
 
-private:
+ private:
     node* root;
     void insertNode(node*& node, const T& data);
     void inorderTraversalNode(node* node) const;
