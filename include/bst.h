@@ -6,6 +6,8 @@
 #include <sstream>
 #include <regex>
 #include "bst.h"
+#include <string>
+#include <algorithm>
 
 bst<std::string> maketree(const char* filename) {
     bst<std::string> tree;
