@@ -1,12 +1,12 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
+#include <algorithm>
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include "bst.h"
-#include <algorithm>
 
 BST<std::string> makeTree(const char* filename) {
     BST<std::string> tree;
