@@ -5,10 +5,14 @@
 #include <string>
 #include <sstream>
 #include "bst.h"
-
 template <typename T>
 
-struct Node {
+    class BST {
+        public:
+BST(){
+        root = nullptr;
+}
+     struct Node {
         T data;
         int count;
         Node* left;
@@ -19,11 +23,7 @@ struct Node {
             left = nullptr;
             right = nullptr;
         }
-};
- public:
-    class BST() {
-root = nullptr;
-}
+};       
     void insert(const t& value) {
         root = add(root, value);
     }
