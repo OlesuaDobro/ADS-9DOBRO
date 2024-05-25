@@ -8,7 +8,6 @@
 template <typename T>
 
     class BST {
-
         public:
 BST() {
         root = nullptr;
