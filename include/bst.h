@@ -6,10 +6,10 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "bst.h"
+#include "BST.h"
 
-bst<std::string> maketree(const char* filename) {
-    bst<std::string> tree;
+BST<std::string> maketree(const char* filename) {
+    BST<std::string> tree;
     std::ifstream file(filename);
     if (!file.is_open()) {
         throw std::runtime_error("Ошибка открытия файла");
