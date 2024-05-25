@@ -7,7 +7,7 @@
 #include "bst.h"
 
 template <typename T>
-class BST {
+
 struct Node {
         T data;
         int count;
@@ -21,7 +21,9 @@ struct Node {
         }
 };
  public:
-    bst() : root(nullptr) {}
+    class BST() {
+root = nullptr;
+}
     void insert(const t& value) {
         root = add(root, value);
     }
