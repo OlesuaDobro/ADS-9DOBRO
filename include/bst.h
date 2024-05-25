@@ -6,7 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "BST.h"
+#include "bst.h"
 
 BST<std::string> maketree(const char* filename) {
     BST<std::string> tree;
