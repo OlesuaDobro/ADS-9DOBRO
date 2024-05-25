@@ -53,7 +53,7 @@ int wordsearch(node* node, const t& value) const {
     return 0;
 }
 
-public:
+ public:
     bst() : root(nullptr) {}
     void insert(const t& value) {
         root = add(root, value);
