@@ -90,3 +90,5 @@ bst<string> makeTree(const char* filename) {
     file.close();
     return tree;
 }
+
+#endif  // INCLUDE_BST_H_
