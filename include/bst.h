@@ -8,6 +8,8 @@
 #include <sstream>
 #include "bst.h"
 
+template <typename T>
+class BST {
 node* add(node* node, const t& value) {
     if (node == nullptr) {
         return new node(value);
@@ -62,4 +64,5 @@ public:
     int search(const t& value) const {
         return wordsearch(root, value);
     }
+}
 #endif  // INCLUDE_BST_H_
