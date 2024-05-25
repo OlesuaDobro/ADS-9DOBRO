@@ -8,6 +8,18 @@
 
 template <typename T>
 class BST {
+struct Node {
+        T data;
+        int count;
+        Node* left;
+        Node* right;
+        Node(const T& data) {
+            data = data;
+            count = 1;
+            left = nullptr;
+            right = nullptr;
+        }
+};
  public:
     bst() : root(nullptr) {}
     void insert(const t& value) {
