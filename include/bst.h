@@ -31,7 +31,7 @@ class bst {
  private:
     node* root;
     void insertNode(node*& node, const T& data);
-    void inorderTraversalNode(node* node) const;
+    void inorderTraversalNode(node*& node) const;
     int sizeNode(node* node) const;
 };
 
