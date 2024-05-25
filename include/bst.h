@@ -6,6 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include "bst.h"
+#include <algorithm>
 
 BST<std::string> makeTree(const char* filename) {
     BST<std::string> tree;
