@@ -1,87 +1,79 @@
-// Copyright 2021 NNTU-CS
-#ifndef INCLUDE_BST_H_
-#define INCLUDE_BST_H_
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include <cctype>
 #include <map>
 
-struct Node {
-    std::string key;
-    int freq;
-    Node* left;
-    Node* right;
-
-    Node(const std::string& word) {
-        key = word;
-        freq = 1;
-        left = nullptr;
-        right = nullptr;
-    }
+template<typename T>
+struct BSTNode {
+    T data;
+    BSTNode<T>* left;
+    BSTNode<T>* right;
+    BSTNode(T val) : data(val), left(nullptr), right(nullptr) {}
 };
+template<typename T>
 class BST {
+public:
+    BST() : root(nullptr) {}
+    void Insert(T val) {
+        root = InsertHelper(root, val);
+    }
+    void InOrderTraversal(std::map<T, int>& wordCount) {
+        InOrderTraversalHelper(root, wordCount);
+    }
 private:
-    Node* root;
-    Node* insert(Node* node, const std::string& word) {
+    BSTNode<T>* root;
+    BSTNode<T>* InsertHelper(BSTNode<T>* node, T val) {
         if (node == nullptr) {
-            node = new Node(word);
+            return new BSTNode<T>(val);
         }
-        else if (word < node->key) {
-            node->left = insert(node->left, word);
-        }
-        else if (word > node->key) {
-            node->right = insert(node->right, word);
-        }
-        else {
-            node->freq++;
+        if (val < node->data) {
+            node->left = InsertHelper(node->left, val);
+        } else if (val > node->data) {
+            node->right = InsertHelper(node->right, val);
         }
         return node;
     }
-    void destroy(Node* node) {
+    void InOrderTraversalHelper(BSTNode<T>* node, std::map<T, int>& wordCount) {
         if (node != nullptr) {
-            destroy(node->left);
-            destroy(node->right);
-            delete node;
+            InOrderTraversalHelper(node->left, wordCount);
+            wordCount[node->data]++;
+            InOrderTraversalHelper(node->right, wordCount);
         }
-    }
-
-public:
-    BST() {
-        root = nullptr;
-    }
-    ~BST() {
-        destroy(root);
-    }
-    void insert(const std::string& word) {
-        root = insert(root, word);
-    }
-    void maketree(const std::string& filename) {
-        std::ifstream file(filename);
-        if (!file) {
-            std::cout << "file error!" << std::endl;
-            return;
-        }
-        std::map<std::string, int> wordFreq;
-        std::string word;
-        char ch;
-        while (file.get(ch)) {
-            ch = std::tolower(ch);
-            if (std::isalpha(ch)) {
-                word += ch;
-            }
-            else if (!word.empty()) {
-                wordFreq[word]++;
-                word = "";
-            }
-        }
-        if (!word.empty()) {
-            wordFreq[word]++;
-        }
-        for (const auto& pair : wordFreq) {
-            insert(pair.first);
-        }
-        file.close();
     }
 };
-#endif  // INCLUDE_BST_H_
+BST<std::string> maketree(const char* filename) {
+    std::ifstream file(filename);
+    if (!file) {
+        std::cout << "File error!" << std::endl;
+        return BST<std::string>();
+    }
+    std::map<std::string, int> wordCount;
+    std::string word;
+    while (file >> word) {
+        std::string cleanedWord;
+        for (char& c : word) {
+            if (isalpha(c)) {
+                cleanedWord += tolower(c);
+            }
+        }
+        wordCount[cleanedWord]++;
+    }
+    file.close();
+    BST<std::string> tree;
+    for (const auto& pair : wordCount) {
+        tree.Insert(pair.first);
+    }
+    return tree;
+}
+int main() {
+    const char* filename = "war_peace.txt";
+    BST<std::string> tree = maketree(filename);
+    std::map<std::string, int> wordCount;
+    tree.InOrderTraversal(wordCount);
+    for (const auto& pair : wordCount) {
+        std::cout << pair.first << " : " << pair.second << std::endl;
+    }
+    return 0;
+}
