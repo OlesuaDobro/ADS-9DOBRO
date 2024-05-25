@@ -23,7 +23,7 @@ BST() {
             left = nullptr;
             right = nullptr;
         }
-                };
+                  };
     void insert(const t& value) {
         root = add(root, value);
     }
