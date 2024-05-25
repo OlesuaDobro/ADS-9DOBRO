@@ -17,6 +17,7 @@ struct BSTNode {
 };
 template<typename T>
 class BST {
+
 public:
     BST() : root(nullptr) {}
     void Insert(T val) {
@@ -25,6 +26,7 @@ public:
     void InOrderTraversal(std::map<T, int>& wordCount) {
         InOrderTraversalHelper(root, wordCount);
     }
+
 private:
     BSTNode<T>* root;
     BSTNode<T>* InsertHelper(BSTNode<T>* node, T val) {
