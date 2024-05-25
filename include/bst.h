@@ -3,13 +3,23 @@
 #define INCLUDE_BST_H_
 #include <algorithm>
 #include <string>
-#include <iostream>
-#include <fstream>
 #include <sstream>
 #include "bst.h"
 
 template <typename T>
 class BST {
+public:
+    bst() : root(nullptr) {}
+    void insert(const t& value) {
+        root = add(root, value);
+    }
+    int depth() const {
+        return depthoftree(root) - 1;
+    }
+    int search(const t& value) const {
+        return wordsearch(root, value);
+    }
+private:
 node* add(node* node, const t& value) {
     if (node == nullptr) {
         return new node(value);
@@ -52,17 +62,6 @@ int wordsearch(node* node, const t& value) const {
     }
     return 0;
 }
+};
 
- public:
-    bst() : root(nullptr) {}
-    void insert(const t& value) {
-        root = add(root, value);
-    }
-    int depth() const {
-        return depthoftree(root) - 1;
-    }
-    int search(const t& value) const {
-        return wordsearch(root, value);
-    }
-}
 #endif  // INCLUDE_BST_H_
