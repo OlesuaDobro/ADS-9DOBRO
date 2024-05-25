@@ -8,8 +8,7 @@
 
 template <typename T>
 class BST {
-
-public:
+ public:
     bst() : root(nullptr) {}
     void insert(const t& value) {
         root = add(root, value);
@@ -21,7 +20,7 @@ public:
         return wordsearch(root, value);
     }
 
-private:
+ private:
 node* add(node* node, const t& value) {
     if (node == nullptr) {
         return new node(value);
