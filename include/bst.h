@@ -1,23 +1,20 @@
 // Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
-#include <iostream>
-#include <fstream>
-#include <string>
 
 template <typename T>
-class bst {
+class BST {
  public:
-    bst() {
+    BST(){
         root = nullptr;
     }
-    struct node {
+    struct Node {
         T data;
         int count;
-        node* left;
-        node* right;
-        node(const T& data) {
-            this->data = data;
+        Node* left;
+        Node* right;
+        Node(const T& data) {
+            data = data;
             count = 1;
             left = nullptr;
             right = nullptr;
@@ -26,80 +23,68 @@ class bst {
     void insert(const T& data);
     void inorderTraversal() const;
     int size() const;
-    ~bst();
+    ~BST();
 
  private:
-    node* root;
-    void insertNode(node*& node, const T& data);
-    void inorderTraversalNode(node*& node) const;
-    int sizeNode(node* node) const;
+    Node* root;
+    void insertN(Node*& node, const T& data);
+    void inorderTraversalN(Node* node) const;
+    int sizeN(Node* node) const;
 };
 
-bst<string> makeTree(const char* filename);
+BST<std::string> makeTree(const char* filename);
 
 template <typename T>
-bst<T>::~bst() {
+BST<T>::~BST() {
     if (root) {
-        deleteTree(root);
+        delTree(root);
     }
 }
 
 template <typename T>
-void bst<T>::insert(const T& data) {
-    insertNode(root, data);
+void BST<T>::insert(const T& data) {
+    insert(root, data);
 }
 
 template <typename T>
-void bst<T>::insertNode(node*& node, const T& data) {
+void BST<T>::insertN(Node*& node, const T& data) {
     if (node == nullptr) {
-        node = new node(data);
+        node = new Node(data);
         return;
     }
     if (data < node->data) {
-        insertNode(node->left, data);
+        insert(node->left, data);
     } else if (data > node->data) {
-        insertNode(node->right, data);
+        insert(node->right, data);
     } else {
         node->count++;
     }
 }
 
 template <typename T>
-void bst<T>::inorderTraversal() const {
-    inorderTraversalNode(root);
+void BST<T>::inorderTraversal() const {
+    inorderTraversal(root);
 }
 
 template <typename T>
-void bst<T>::inorderTraversalNode(node* node) const {
+void BST<T>::inorderTraversalN(Node* node) const {
     if (node != nullptr) {
-        inorderTraversalNode(node->left);
-        cout << node->data << " : " << node->count << endl;
-        inorderTraversalNode(node->right);
+        inorderTraversal(node->left);
+        std::cout << node->data << " : " << node->count << std::endl;
+        inorderTraversal(node->right);
     }
 }
 
 template <typename T>
-int bst<T>::size() const {
-    return sizeNode(root);
+int BST<T>::size() const {
+    return size(root);
 }
 
 template <typename T>
-int bst<T>::sizeNode(node* node) const {
+int BST<T>::sizeN(Node* node) const {
     if (node == nullptr) {
         return 0;
     }
-    return 1 + sizeNode(node->left) + sizeNode(node->right);
+    return 1 + size(node->left) + size(node->right);
 }
-
-bst<string> makeTree(const char* filename) {
-    bst<string> tree;
-    ifstream file(filename);
-    string value;
-    while (file >> value) {
-        tree.insert(value);
-    }
-    file.close();
-    return tree;
-}
-
 #endif  // INCLUDE_BST_H_
