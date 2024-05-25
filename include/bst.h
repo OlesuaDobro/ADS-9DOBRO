@@ -4,7 +4,6 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <regex>
 #include "bst.h"
 #include <string>
 #include <algorithm>
