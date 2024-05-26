@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <algorithm> 
+#include <algorithm>
 template <typename T>
 class BST {
  private:
