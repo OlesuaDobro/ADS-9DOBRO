@@ -4,9 +4,9 @@
 #include <fstream>
 #include <string>
 template <typename T>
-class bst {
+class BST {
  public:
-    bst() {
+    BST() {
         root = nullptr;
     }
     struct node {
@@ -24,7 +24,7 @@ class bst {
     void insert(const T& data);
     void inorderTraversal() const;
     int size() const;
-    ~bst();
+    ~BST();
  private:
     node* root;
     void insertNode(node*& node, const T& data);
@@ -32,19 +32,19 @@ class bst {
     int sizeNode(node* node) const;
 };
 
-bst<string> makeTree(const char* filename);
+BST<string> makeTree(const char* filename);
 template <typename T>
-bst<T>::~bst() {
+BST<T>::~BST() {
     if (root) {
         deleteTree(root);
     }
 }
 template <typename T>
-void bst<T>::insert(const T& data) {
+void BST<T>::insert(const T& data) {
     insertNode(root, data);
 }
 template <typename T>
-void bst<T>::insertNode(node*& node, const T& data) {
+void BST<T>::insertNode(node*& node, const T& data) {
     if (node == nullptr) {
         node = new node(data);
         return;
@@ -58,11 +58,11 @@ void bst<T>::insertNode(node*& node, const T& data) {
     }
 }
 template <typename T>
-void bst<T>::inorderTraversal() const {
+void BST<T>::inorderTraversal() const {
     inorderTraversalNode(root);
 }
 template <typename T>
-void bst<T>::inorderTraversalNode(node* node) const {
+void BST<T>::inorderTraversalNode(node* node) const {
     if (node != nullptr) {
         inorderTraversalNode(node->left);
         cout << node->data << " : " << node->count << endl;
@@ -70,18 +70,18 @@ void bst<T>::inorderTraversalNode(node* node) const {
     }
 }
 template <typename T>
-int bst<T>::size() const {
+int BST<T>::size() const {
     return sizeNode(root);
 }
 template <typename T>
-int bst<T>::sizeNode(node* node) const {
+int BST<T>::sizeNode(node* node) const {
     if (node == nullptr) {
         return 0;
     }
     return 1 + sizeNode(node->left) + sizeNode(node->right);
 }
-bst<string> makeTree(const char* filename) {
-    bst<string> tree;
+BST<string> makeTree(const char* filename) {
+    BST<string> tree;
     ifstream file(filename);
     string value;
     while (file >> value) {
