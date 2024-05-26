@@ -1,3 +1,4 @@
+// Copyright 2021 NNTU-CS
 #ifndef INCLUDE_BST_H_
 #define INCLUDE_BST_H_
 #include <iostream>
@@ -5,7 +6,7 @@
 #include <string>
 template <typename T>
 class BST {
-private:
+ private:
     struct Node {
         T data;
         int count;
@@ -44,7 +45,8 @@ private:
         }
         return searchThree(root->right, data);
     }
-public:
+
+ public:
     BST() : root(nullptr) {}
     void add(const T& data) {
         root = addN(root, data);
