@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <algorithm> 
 template <typename T>
 class BST {
  private:
@@ -58,8 +59,7 @@ class BST {
         Node* curr = searchThree(root, data);
         if (curr == nullptr) {
             return 0;
-        }
-        else {
+        } else {
             return curr->count;
         }
     }
